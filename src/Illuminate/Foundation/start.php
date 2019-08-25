@@ -24,11 +24,22 @@ error_reporting(-1);
 |
 */
 
-if ( ! extension_loaded('mcrypt'))
+/*if ( ! extension_loaded('mcrypt'))
 {
 	echo 'Mcrypt PHP extension required.'.PHP_EOL;
 
 	exit(1);
+}*/
+
+// Mcrypt extension check is disabled, because now we use polyfill library
+// phpseclib/mcrypt_compat
+// Just in case, we make a double check
+// Indeed, this can be bypassed easily, but polyfill is a requirement, so
+// no one will ever try to do this dirty work I assume
+if (!defined('MCRYPT_MODE_ECB')) {
+    echo 'Mcrypt PHP extension or polyfill required to function.' . PHP_EOL;
+
+    exit(1);
 }
 
 /*
