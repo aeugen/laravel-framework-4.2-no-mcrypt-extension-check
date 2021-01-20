@@ -478,7 +478,7 @@ class Builder {
 
 		if ( ! $value instanceof Expression)
 		{
-			$this->addBinding($value, 'where');
+			$this->addBinding(is_array($value) ? head($value) : $value, 'where');
 		}
 
 		return $this;
@@ -557,7 +557,7 @@ class Builder {
 
 		$this->wheres[] = compact('column', 'type', 'boolean', 'not');
 
-		$this->addBinding($values, 'where');
+		$this->addBinding(array_slice($this->cleanBindings($values), 0, 2), 'where');
 
 		return $this;
 	}
@@ -881,7 +881,7 @@ class Builder {
 	 */
 	public function whereDate($column, $operator, $value, $boolean = 'and')
 	{
-		return $this->addDateBasedWhere('Date', $column, $operator, $value, $boolean);
+		return $this->addDateBasedWhere('Date', $column, $operator, is_array($value) ? head($value) : $value, $boolean);
 	}
 
 	/**
@@ -895,7 +895,7 @@ class Builder {
 	 */
 	public function whereDay($column, $operator, $value, $boolean = 'and')
 	{
-		return $this->addDateBasedWhere('Day', $column, $operator, $value, $boolean);
+		return $this->addDateBasedWhere('Day', $column, $operator, is_array($value) ? head($value) : $value, $boolean);
 	}
 
 	/**
@@ -909,7 +909,7 @@ class Builder {
 	 */
 	public function whereMonth($column, $operator, $value, $boolean = 'and')
 	{
-		return $this->addDateBasedWhere('Month', $column, $operator, $value, $boolean);
+		return $this->addDateBasedWhere('Month', $column, $operator, is_array($value) ? head($value) : $value, $boolean);
 	}
 
 	/**
@@ -923,7 +923,7 @@ class Builder {
 	 */
 	public function whereYear($column, $operator, $value, $boolean = 'and')
 	{
-		return $this->addDateBasedWhere('Year', $column, $operator, $value, $boolean);
+		return $this->addDateBasedWhere('Year', $column, $operator, is_array($value) ? head($value) : $value, $boolean);
 	}
 
 	/**
@@ -1039,7 +1039,7 @@ class Builder {
 
 		$this->havings[] = compact('type', 'column', 'operator', 'value', 'boolean');
 
-		$this->addBinding($value, 'having');
+		$this->addBinding(is_array($value) ? head($value) : $value, 'having');
 
 		return $this;
 	}
