@@ -106,7 +106,10 @@ class Route {
 	{
 		$parameters = array_filter($this->parameters(), function($p) { return isset($p); });
 
-		return call_user_func_array($this->action['uses'], $parameters);
+		// PHP8 Fix:
+		// https://laracasts.com/discuss/channels/laravel/unknown-named-parameters-laravel-8
+		// https://chrislloyd.co/fixing-laravel-php-8-error-unknown-named-parameter-error/
+		return call_user_func_array($this->action['uses'], array_values($parameters));
 	}
 
 	/**

@@ -1,8 +1,10 @@
-## Laravel 4.2 Framework with phpseclib's Mcrypt polyfill
+## Laravel 4.2 Framework with phpseclib's Mcrypt polyfill + PHP8 suport
 
-This repository holds Laravel 4.2 Framework code with softened Mcrypt extension check.
+*For PHP7.x, please check [4.2-no-mcrypt](https://github.com/Ardakilic/laravel-framework-4.2-no-mcrypt-extension-check/tree/4.2-no-mcrypt) branch.*
 
-If you're still using Laravel 4.2 for whatever reason, and you need to run it in newer PHP versions, you either need a polyfill for mcrypt, or install mcrypt over pecl. However, pecl is not available everywhere, and feels a bit hacky if you'd ask me.
+This repository holds Laravel 4.2 Framework code with softened Mcrypt extension check. Additionally, the repository holds PHP8 compatibility for routes.
+
+If you're still using Laravel 4.2 for whatever reason, and you need to run it in newer PHP versions, and if the package manager does not have `php{version}-mcrypt` packages, you either need a polyfill for mcrypt, or install mcrypt over pecl. However, pecl is not available everywhere, and feels a bit hacky if you'd ask me.
 
 This repository removes `extension_loaded()` check from Laravel 4.2's core, and uses [phpseclib/mcrypt_compat](https://github.com/phpseclib/mcrypt_compat) library for `mcrypt_*` functions for the cases where Mcrypt is not installed as an extension.
 
@@ -19,7 +21,7 @@ To install this fork, simply add/modify these lines in your `composer.json` of y
         }
     ],
     "require": {
-        "laravel/framework": "dev-4.2-no-mcrypt"
+        "laravel/framework": "dev-4.2-no-mcrypt-php8"
     }
 }
 ```

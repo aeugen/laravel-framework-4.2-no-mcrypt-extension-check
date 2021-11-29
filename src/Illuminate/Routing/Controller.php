@@ -228,7 +228,11 @@ abstract class Controller {
 	{
 		$this->setupLayout();
 
-		$response = call_user_func_array(array($this, $method), $parameters);
+		//$response = call_user_func_array(array($this, $method), $parameters);
+		// PHP-8 FIX:
+		// https://laracasts.com/discuss/channels/laravel/unknown-named-parameters-laravel-8
+		// https://chrislloyd.co/fixing-laravel-php-8-error-unknown-named-parameter-error/
+		$response = call_user_func_array(array($this, $method), array_values($parameters));
 
 		// If no response is returned from the controller action and a layout is being
 		// used we will assume we want to just return the layout view as any nested
