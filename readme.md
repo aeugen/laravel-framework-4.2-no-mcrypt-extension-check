@@ -1,3 +1,15 @@
+## Laravel Framework 4.2 with PHP8 compatibility
+
+This branch holds compatibility patch for PHP8, to fix 'Unknown named parameters' error:
+
+https://laracasts.com/discuss/channels/laravel/unknown-named-parameters-laravel-8
+
+https://chrislloyd.co/fixing-laravel-php-8-error-unknown-named-parameter-error/
+
+Below is the original ReadMe:
+
+-------
+
 ## Laravel Framework (Kernel)
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
